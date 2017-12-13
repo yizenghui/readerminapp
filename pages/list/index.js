@@ -106,6 +106,10 @@ Page({
     })
   },
 
+  tapReverseList: function (event) {
+    this.setData({ list: this.data.list.reverse()})
+  },
+
   // methods:{
 
   //   log: function (url, title) {

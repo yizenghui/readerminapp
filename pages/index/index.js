@@ -65,12 +65,31 @@ Page({
     }
   },
   // 清空所有数据
-  clearAllCache: function (e) {
+  tapClearAllCache: function (e) {
     // 清除页面数据
     this.setData({
       logs: []
     })
     // 清空本地缓存
     wx.clearStorage()
+  },
+  tapClearInput: function (e) {
+    this.setData({
+      url: ""
+    })
+  }, 
+  tapGoto: function (e) {
+    var inputUrl = this.data.url
+    if (inputUrl == "") {
+      wx.showModal({
+        title: '提示',
+        content: '请输入文章目录地址',
+        showCancel: false
+      })
+    } else {
+      wx.navigateTo({
+        url: '../list/index?url=' + inputUrl
+      })
+    }
   },
 })

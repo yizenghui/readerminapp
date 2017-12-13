@@ -27,14 +27,23 @@
         </view>
       </view>
 
+
+
       <view wx:if="{{list.length > 0}}">
         <view class="weui-cells">
+        <view  class="weui-cell weui-cell_access">
+          <view class="weui-cell__bd">
+                <text>目录</text>
+            </view>
+            
+            <view class="weui-cell__ft" bindtap="tapReverseList">
+              倒序
+            </view>
+        </view>
           <navigator class="weui-cell weui-cell_access" url="../info/index?url={{item.url}}"  wx:for="{{list}}"  wx:key="*this" >
             <div class="weui-cell__bd">
                 <p>{{item.title}}</p>
             </div>
-            <view class="weui-cell__ft  weui-cell__ft_in-access">
-            </view>
           </navigator>
         </view>
         </view>
