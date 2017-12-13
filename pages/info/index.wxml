@@ -1,0 +1,15 @@
+<view wx:if="{{loading}}"> 
+  <view>加载中...</view>
+  <view>加载等待过程中出现全屏广告...</view>
+</view>
+<view wx:elif="{{error}}"> 
+  <view>出错了</view>
+  <view>没有办法获取目录信息...</view>
+  <view>推荐用户干啥啥啥去...</view>
+  </view>
+<view wx:else>
+  <view style="padding: 20px 15px;font-size: 15px;">
+    <view style="font-size: 18px;font-weight: 400;margin-bottom: .9em;">{{title}}</view>
+    <rich-text nodes="{{content}}"></rich-text>
+  </view>
+</view>
