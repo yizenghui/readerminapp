@@ -11,5 +11,9 @@
   <view style="padding: 20px 15px;font-size: 15px;">
     <view style="font-size: 18px;font-weight: 400;margin-bottom: .9em;">{{title}}</view>
     <rich-text nodes="{{content}}"></rich-text>
+    <view class="btn-area">
+      <button type="default" wx:if="{{previous.length>0}}" bindtap="tapPrevious"> prev </button>
+      <button type="primary" wx:if="{{next.length>0}}" bindtap="tapNext"> Next </button>
+    </view>
   </view>
 </view>

@@ -1,14 +1,63 @@
 //index.js
 //获取应用实例
+const app = getApp()
 
 Page({
+
+  data: {
+
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    // cateindex:1,
+    // category: [ '小说', '新闻', ],
+    url: "",
+    logs: []
+  },
+  onLoad: function () {
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+  },
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
       // 来自页面内转发按钮
       // console.log(res.target)
     }
     return {
-      title: '跟读小程序',
+      title: '跟读，品尝文学世界各种美味',
       path: 'pages/index/index',
       success: function (res) {
         // 转发成功
@@ -18,6 +67,8 @@ Page({
       }
     }
   },
+
+
 
 
   onReady: function () {
@@ -31,24 +82,24 @@ Page({
       success: function (res) {
         var logs = JSON.parse(res.data)||[]
         that.setData({
-          logs: logs
+          logs: logs.reverse()
         })
       }
     })
   },
 
-  data: {
-    // cateindex:1,
-    // category: [ '小说', '新闻', ],
-    url: "http://longfu8.com/",
-    logs: []
-  },
   // bindPickerChange: function (e) {
   //   console.log('picker发送选择改变，携带值为', e.detail.value)
   //   this.setData({
   //     cateindex: e.detail.value
   //   })
   // },
+
+  bindKeyInput: function (e) {
+    this.setData({
+      url: e.detail.value
+    })
+  },
   formSubmit: function (e) {
     var inputUrl = e.detail.value.url
     var that = this
@@ -64,14 +115,31 @@ Page({
       })
     }
   },
+  formSubscribe: function (e) {
+    console.log('form发生了submit事件，携带数据为：', e)
+  },
+
   // 清空所有数据
   tapClearAllCache: function (e) {
-    // 清除页面数据
-    this.setData({
-      logs: []
+    var that = this
+
+    wx.showModal({
+      title: '提示',
+      content: '清空所有缓存记录，确定吗？',
+      success: function (res) {
+        if (res.confirm) {
+          // 清除页面数据
+          that.setData({
+            logs: []
+          })
+          // 清空本地缓存
+          wx.clearStorage()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
-    // 清空本地缓存
-    wx.clearStorage()
+
   },
   tapClearInput: function (e) {
     this.setData({

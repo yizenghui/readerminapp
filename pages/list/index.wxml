@@ -19,26 +19,41 @@
 
       <view class="index">
         <view class="index-hd">
-        <navigator  url="/pages/index/index" >
-          
-          <image class="index-logo" src="../resources/kind/logo.png"></image>
-          </navigator>
+        
+          <button style='width:80px' class="index-logo-button" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+            <image class="index-logo" src="../resources/kind/logo.png"></image>
+          </button>
+          <block wx:else>
+            <image class="index-logo" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+          </block>
           <view class="index-desc">{{title}}</view>
         </view>
       </view>
 
-
-
       <view wx:if="{{list.length > 0}}">
+
+        <view class="weui-cells" wx:if="{{this_read.url}}">
+          <view  class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                  <text>上次读到</text>
+              </view>
+              <navigator class="weui-cell__ft weui-cell__ft_in-access" url="../info/index?url={{this_read.url}}">
+                {{this_read.title}}
+              </navigator>
+          </view>
+        </view>
+
         <view class="weui-cells">
         <view  class="weui-cell weui-cell_access">
           <view class="weui-cell__bd">
-                <text>目录</text>
-            </view>
-            
-            <view class="weui-cell__ft" bindtap="tapReverseList">
-              倒序
-            </view>
+              <text>目录</text>
+              <!--<form bindsubmit="formSubscribe" report-submit="true" wx:if="{{userInfo.avatarUrl}}">
+                <button size="mini" type="primary"  class="list-min-botton" formType="submit">订阅更新</button>
+              </form> -->
+          </view>
+          <view class="weui-cell__ft" bindtap="tapReverseList">
+            <button size="mini" class="list-min-botton" >reverse</button>
+          </view>
         </view>
           <navigator class="weui-cell weui-cell_access" url="../info/index?url={{item.url}}"  wx:for="{{list}}"  wx:key="*this" >
             <div class="weui-cell__bd">
