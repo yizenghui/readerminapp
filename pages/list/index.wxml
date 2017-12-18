@@ -31,13 +31,12 @@
       </view>
 
       <view wx:if="{{list.length > 0}}">
-
         <view class="weui-cells" wx:if="{{this_read.url}}">
           <view  class="weui-cell weui-cell_access">
             <view class="weui-cell__bd">
-                  <text>上次读到</text>
+                  <text></text>
               </view>
-              <navigator class="weui-cell__ft weui-cell__ft_in-access" url="../info/index?url={{this_read.url}}">
+              <navigator class="weui-cell__ft weui-cell__ft_in-access weui-media-box__title" url="../info/index?url={{this_read.url}}">
                 {{this_read.title}}
               </navigator>
           </view>

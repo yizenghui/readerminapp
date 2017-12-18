@@ -9,7 +9,7 @@
 <view class="weui-cells">
     <view class="weui-cell">
         <view class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入文本" style="height: 3.3em"  value="{{url}}" bindinput="bindKeyInput"/>
+            <textarea class="weui-textarea" placeholder="请输入目录地址" style="height: 3.3em"  value="{{url}}" bindinput="bindKeyInput"/>
         </view>
     </view>
     <view class="btn-area">
