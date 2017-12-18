@@ -37,11 +37,13 @@
         <view class="weui-panel__hd">浏览记录</view>
         <view class="weui-panel__bd">
            <view class="weui-media-box weui-media-box_text" wx:for="{{logs}}" wx:key="*this">
-                <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+                <view class="weui-media-box__title weui-media-box__title_in-text">
+                      <navigator url="../list/index?url={{item.url}}">{{item.title}}</navigator>
+                </view>
                 <view class="weui-media-box__desc">{{item.url}}</view>
                 <view class="weui-media-box__info">
                     <view class="weui-media-box__info__meta">  
-                      <navigator url="../list/index?url={{item.url}}">查看</navigator>
+                       <navigator url="../list/index?url={{item.url}}">查看</navigator> 
                     </view>
                     <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" bindtap="tapDeleteLogItem" data-index="{{index}}">删除</view>
                 </view>
