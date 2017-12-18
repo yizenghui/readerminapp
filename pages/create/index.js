@@ -68,30 +68,7 @@ Page({
     }
   },
 
-  tapDeleteLogItem(e) {
-    const index = e.currentTarget.dataset.index;
-    let logs = this.data.logs;
-    var log = logs[index];
-    if (log && log.url) {
-      wx.removeStorage({
-        key: '__read_info_' + log.url
-       
-      })
-      wx.removeStorage({
-        key: '__cache_list_' + log.url
-      })
-    }
 
-    logs.splice(index, 1);              // 删除购物车列表里这个商品
-    this.setData({
-      logs: logs
-    });
-
-    wx.setStorage({
-      key: "url_logs",
-      data: JSON.stringify(logs)
-    })
-  },
 
 
   onReady: function () {

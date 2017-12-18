@@ -4,55 +4,58 @@
 
 <view class="container">
     
-<view class="index">
-  <view class="index-hd">
-    <button class="index-logo-button" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-      <image class="index-logo" src="../resources/kind/logo.png" background-size="cover"></image>
-    </button>
-    <view wx:else>
-      <image class="index-logo" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+       
+ 
+<view class="weui-cells">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入文本" style="height: 3.3em"  value="{{url}}" bindinput="bindKeyInput"/>
+        </view>
     </view>
-
-    <view class="index-desc">
-    <view>愉快地阅读与分享！ </view>
-    <view>实时载入网站目录及文章，把网站装进小程序！ </view>
+    <view class="btn-area">
+      <view class="body-view">
+        <button type="primary"  bindtap="primary" bindtap="tapGoto"> 载入 </button>
+        <button bindtap="tapClearInput">清空</button>
+      </view>
     </view>
-  </view>
 </view>
+<!-- 
 <form bindsubmit="formSubmit" bindreset="formReset">
   <view class="weui-search-bar weui-search-bar_focusing">
-        <view class="weui-search-bar__form" >
-          <view class="weui-search-bar__box weui-cell_input">
-          <input name="url" value="{{url}}" placeholder="http://" autocomplete="off"   bindinput="bindKeyInput"/>
-<icon class="weui-icon-clear" type="clear" size="16" bindtap="tapClearInput"/>
-          </view>
-        </view>
-        <button size="mini" class="index-inlude-button weui-search-bar__cancel-btn black" bindtap="tapGoto" >载入</button>
+    <view class="weui-search-bar__form" >
+      <view class="weui-search-bar__box weui-cell_input">
+      <input name="url" value="{{url}}" placeholder="http://" autocomplete="off" bindinput="bindKeyInput"/>
+      <icon class="weui-icon-clear" type="clear" size="16" bindtap="tapClearInput"/>
       </view>
-</form>
+    </view>
+    <button size="mini" class="index-inlude-button weui-search-bar__cancel-btn black" bindtap="tapGoto" >载入</button>
+  </view>
+</form> -->
 
 <view wx:if="{{logs.length > 0}}">
+   <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__hd">浏览记录</view>
+        <view class="weui-panel__bd">
+           <view class="weui-media-box weui-media-box_text" wx:for="{{logs}}" wx:key="*this">
+                <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+                <view class="weui-media-box__desc">{{item.url}}</view>
+                <view class="weui-media-box__info">
+                    <view class="weui-media-box__info__meta">  
+                      <navigator url="../list/index?url={{item.url}}">查看</navigator>
+                    </view>
+                    <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" bindtap="tapDeleteLogItem" data-index="{{index}}">删除</view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-panel__ft">
+            <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd"  bindtap="tapClearAllCache">清空所有</view>
+                <view class="weui-cell__ft "/>
+            </view>
+        </view>
+    </view>
 
-<view class="weui-cells" style="margin-top:0;">
- <view  class="weui-cell weui-cell_access">
-    <view class="weui-cell__bd light">
-          <text>浏览记录</text>
-    </view>
-                
-                
-    <view class="weui-cell__ft light" bindtap="tapClearAllCache">
-      <button size="mini" class="index-clear-button">清空</button>
-    </view>
-  </view>
-    <navigator class="weui-cell weui-cell_access" url="../list/index?url={{item.url}}" wx:for="{{logs}}" wx:key="*this">
-      <view class="weui-cell__bd grey">
-          <text>{{item.title}}</text>
-      </view>
-      <view class="weui-cell__ft  weui-cell__ft_in-access">
-      </view>
-    </navigator>
-  </view>
-  </view>
+   </view>
 <view wx:else>
 </view>
 
