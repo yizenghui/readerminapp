@@ -101,8 +101,12 @@ Page({
     var that = this;
     var urlStr = params.url
     // 显示加载动画
-    that.setData({ url: urlStr, loading: true })
+    // that.setData({ url: urlStr, loading: true })
 
+    that.setData({ url: urlStr })
+    wx.showLoading({
+      title: '加载中',
+    })
     var logs = []
     // 把历史记录读取出来
     wx.getStorage({
@@ -116,9 +120,12 @@ Page({
     })
 
     wx.request({
-      url: 'https://readfollow.com/minapp/getlist',
+      url: 'https://minapp.readfollow.com/getlist',
       // url: 'https://localhost:1323/list', 
-      data: { url: urlStr },
+      data: { 
+        url: urlStr ,
+        openid: app.globalData.openID,
+      },
       header: {
         'content-type': 'application/json'
       },
@@ -148,7 +155,7 @@ Page({
 
         // 写入到浏览记录缓存
         var rep = false; // 是否已存在
-        if (logs.length ) {
+        if ( logs.length ) {
         // 检查有没缓存重复数据
           for (var i = 0; i < logs.length; i++) {
             if (logs[i].url == urlStr) rep = true
@@ -162,6 +169,8 @@ Page({
             data: JSON.stringify(logs)
           })
         }
+
+        wx.hideLoading()
       }
     })
   },

@@ -2,14 +2,26 @@
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // 发送 res.code 到后台换取 openId
+        var that = this
+        wx.request({
+          url: 'https://minapp.readfollow.com/getopenid',
+          data: { code: res.code },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: res => {
+            // globalData.openID  写入
+             this.globalData.openID = res.data.openid
+            //  console.log(this.globalData)
+          }
+        })
       }
     })
     // 获取用户信息
@@ -21,7 +33,6 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-console.log(res)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -34,6 +45,7 @@ console.log(res)
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    openID:""
   }
 })

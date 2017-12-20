@@ -1,3 +1,6 @@
+
+const app = getApp()
+
 Page({
 
   // onReady:function(){
@@ -46,11 +49,16 @@ Page({
       url: urlStr,
       loading: true
     })
-    
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
-      url: 'https://readfollow.com/minapp/getcontent',
+      url: 'https://minapp.readfollow.com/getcontent',
       // url: 'https://localhost:1323/show', 
-      data: { url: urlStr },
+      data: {
+        url: urlStr,
+        openid: app.globalData.openID,
+      },
       header: {
         'content-type': 'application/json'
       },
@@ -60,6 +68,7 @@ Page({
           error: true,
           loading: false,
         });
+        wx.hideLoading()
       },
       success: function (res) {
         var data = res.data;
@@ -75,6 +84,7 @@ Page({
             loading: false,
           });
         }
+        wx.hideLoading()
       }
     })
   },
