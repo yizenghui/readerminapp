@@ -40,6 +40,28 @@ Page({
     }
   },
 
+  checkSubcribe: function () {
+    var that = this
+    var urlStr = that.data.url
+    wx.request({
+      url: 'https://minapp.readfollow.com/checksubscribe',
+      // url: 'https://localhost:1323/list', 
+      data: {
+        openid: app.globalData.openID,
+        url: urlStr,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      fail: function () {
+        
+      },
+      success: function (res) {
+
+       console.log(res)
+      }
+    })
+  },
 
   userSign:function(){
     if (app.globalData.userInfo) {
@@ -118,7 +140,7 @@ Page({
         })
       }
     })
-
+    this.checkSubcribe()
     wx.request({
       url: 'https://minapp.readfollow.com/getlist',
       // url: 'https://localhost:1323/list', 
