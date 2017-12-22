@@ -17,19 +17,7 @@
 
       <view class="container">
 
-        <view class="weui-cells">
-          <view  class="weui-cell weui-cell_access">
-            <view class="weui-cell__bd">
-                <text>一周内有更新通知我</text>
-            </view>
-            <view class="weui-cell__ft" >
-                <form bindsubmit="formSubscribe" report-submit="true" wx:if="{{userInfo.avatarUrl}}">
-                  <button size="mini" type="primary"  class="list-min-botton" formType="submit">订阅更新</button>
-                </form> 
-                <button  size="mini" type="default"  class="list-min-botton" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
-            </view>
-          </view>
-        </view>
+
       <view class="index">
         <view class="index-hd">
         
@@ -51,8 +39,13 @@
             <view class="weui-cell__bd">
                 <text>目录</text>
             </view>
-            <view class="weui-cell__ft" bindtap="tapReverseList">
-              <button size="mini" class="list-min-botton" >反序</button>
+            <view class="weui-cell__ft">
+              <button size="mini" class="list-min-botton" bindtap="tapReverseList" >反序</button>
+
+              <form bindsubmit="formSubscribe" report-submit="true" wx:if="{{!subcribe_status}}">
+                <button size="mini" type="primary"  class="list-min-botton" formType="submit">订阅</button>
+              </form>
+              <button size="mini" class="list-min-botton" wx:if="{{subcribe_status}}">已订阅</button>
             </view>
           </view>
           

@@ -16,12 +16,26 @@ Page({
     logs: [],
     read_log: [],
     this_read: [], // 正在阅读
+    subcribe_status:false,
   },
 
+  // 数组反序
   tapReverseList: function (event) {
     this.setData({ list: this.data.list.reverse()})
   },
 
+  // 订阅提交
+  formSubscribe: function (e) {
+    this.setData({ subcribe_status: true })
+    var formId = e.detail.formId
+
+    wx.showModal({
+      title: '成功订阅',
+      content: '7天内将通知一次此目录更新情况',
+      showCancel: false
+    })
+    console.log('form发生了submit事件，携带数据为：', e.detail.formId)
+  },
 
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
@@ -57,7 +71,9 @@ Page({
         
       },
       success: function (res) {
-
+        that.setData({
+          subcribe_status:res.data.Status
+        })
        console.log(res)
       }
     })
