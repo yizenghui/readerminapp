@@ -26,13 +26,35 @@ Page({
 
   // 订阅提交
   formSubscribe: function (e) {
-    this.setData({ subcribe_status: true })
+    var that = this
     var formId = e.detail.formId
-
+    var urlStr = that.data.url
     wx.showModal({
       title: '成功订阅',
-      content: '7天内将通知一次此目录更新情况',
+      content: '7天内通知一次更新情况',
       showCancel: false
+    })
+
+    wx.request({
+      url: 'https://minapp.readfollow.com/subscribe',
+      // url: 'https://localhost:1323/list', 
+      data: {
+        openid: app.globalData.openID,
+        url: urlStr,
+        formid: formId,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      fail: function () {
+
+      },
+      success: function (res) {
+        that.setData({
+          subcribe_status: res.data.Status
+        })
+        console.log(res)
+      }
     })
     console.log('form发生了submit事件，携带数据为：', e.detail.formId)
   },
