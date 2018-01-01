@@ -101,6 +101,36 @@ Page({
     })
   },
 
+
+  cancelSubcribe: function () {
+    var that = this
+    var urlStr = that.data.url
+    wx.request({
+      url: 'https://minapp.readfollow.com/cancelsubscribe',
+      // url: 'https://localhost:1323/list', 
+      data: {
+        openid: app.globalData.openID,
+        url: urlStr,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      fail: function () {
+
+      },
+      success: function (res) {
+
+        that.setData({
+          subcribe_status: false
+        })
+        wx.showModal({
+          title: '取消订阅',
+          content: '该目录更新将不再通知您！',
+          showCancel: false
+        })
+      }
+    })
+  },
   userSign:function(){
     if (app.globalData.userInfo) {
       console.log(app.globalData.userInfo)

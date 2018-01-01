@@ -36,3 +36,9 @@
   margin-top: 0;
    margin-bottom: 0;
 }
+
+.list-link{
+  width: 16em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -49,9 +49,9 @@ Page({
       url: urlStr,
       loading: true
     })
-    wx.showLoading({
-      title: '加载中',
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     wx.request({
       url: 'https://minapp.readfollow.com/getcontent',
       // url: 'https://localhost:1323/show', 
@@ -84,7 +84,7 @@ Page({
             loading: false,
           });
         }
-        wx.hideLoading()
+        // wx.hideLoading()
       }
     })
   },
@@ -151,6 +151,25 @@ Page({
       this.fetch(this.data.next)
       this.buildLink()
     }
+  },
+  // 把链接保存到剪贴板
+  setcp() {
+
+    wx.setClipboardData({
+      data: this.data.url,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showModal({
+              title: '提示',
+              content: '原文链接已复制！',
+              showCancel: false
+            })
+            console.log(res.data) // data
+          }
+        })
+      }
+    })
   },
 
 

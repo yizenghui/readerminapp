@@ -2,7 +2,7 @@
 <import src="../common/head.wxml"/>
 <import src="../common/foot.wxml"/>
 <view class="container">
- 
+  
 <view class="weui-cells">
     <view class="weui-cell">
         <view class="weui-cell__bd">
@@ -13,6 +13,7 @@
       <view class="body-view">
         <button type="primary"  bindtap="primary" bindtap="tapGoto"> 载入 </button>
         <button bindtap="tapClearInput">清空</button>
+        <button bindtap="rdcopy">粘贴</button>
       </view>
     </view>
 </view>
@@ -37,12 +38,13 @@
                 <navigator class="weui-media-box__title weui-media-box__title_in-text" url="../list/index?url={{item.url}}">
                      {{item.title}}
                 </navigator>
-                <view class="weui-media-box__desc">{{item.url}}</view>
+                <!-- <view class="weui-media-box__desc">{{item.url}}</view> -->
                 <view class="weui-media-box__info">
-                     <view class="weui-media-box__info__meta">  
-                       <navigator url="../list/index?url={{item.url}}">查看</navigator> 
-                    </view> 
-                    <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" bindtap="tapDeleteLogItem" data-index="{{index}}">删除</view>
+                     
+                     <view class="weui-media-box__info__meta" style="text-overflow: ellipsis;max-width: 16em;overflow: hidden;">  
+                       {{item.url}}
+                    </view>
+                    <view class="weui-media-box__info__meta " bindtap="tapDeleteLogItem" data-index="{{index}}">移除</view>
                 </view>
             </view>
         </view>

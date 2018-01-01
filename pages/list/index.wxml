@@ -3,6 +3,10 @@
 <import src="../common/foot.wxml"/>
 
 <view wx:if="{{loading}}"> 
+ <div class="weui-loadmore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>
   <view>加载中...</view>
   <view>加载等待过程中出现全屏广告...</view>
 </view>
@@ -20,13 +24,13 @@
 
       <view class="index">
         <view class="index-hd">
-        
+<!--         
           <view wx:if="{{!userInfo.avatarUrl}}">
             <image class="index-logo" src="../resources/kind/logo.png"></image>
           </view>
           <block wx:else>
             <image class="index-logo" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-          </block>
+          </block> -->
           <view class="index-desc">{{title}}</view>
         </view>
       </view>
@@ -41,7 +45,7 @@
                 <form bindsubmit="formSubscribe" report-submit="true" wx:if="{{!subcribe_status}}">
                 <button size="mini" type="primary"  class="list-min-botton" formType="submit">订阅</button>
               </form>
-              <button size="mini" class="list-min-botton" wx:if="{{subcribe_status}}">已订阅</button>
+              <button size="mini" class="list-min-botton" wx:if="{{subcribe_status}}" bindtap="cancelSubcribe">已订阅</button>
             </view>
             <view class="weui-cell__ft">
 

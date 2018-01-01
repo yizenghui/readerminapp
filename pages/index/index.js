@@ -186,4 +186,15 @@ Page({
       })
     }
   },
+  // 把链接保存到剪贴板
+  rdcopy() {
+    var that = this
+    wx.getClipboardData({
+      success: function (res) {
+        that.setData({
+          url: res.data
+        })
+      }
+    })
+  }
 })
