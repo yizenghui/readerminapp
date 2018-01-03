@@ -1,6 +1,4 @@
-<!--index.wxml-->
-<import src="../common/head.wxml"/>
-<import src="../common/foot.wxml"/>
+
 <view class="container">
   
 <view class="weui-cells">
@@ -17,18 +15,6 @@
       </view>
     </view>
 </view>
-<!-- 
-<form bindsubmit="formSubmit" bindreset="formReset">
-  <view class="weui-search-bar weui-search-bar_focusing">
-    <view class="weui-search-bar__form" >
-      <view class="weui-search-bar__box weui-cell_input">
-      <input name="url" value="{{url}}" placeholder="http://" autocomplete="off" bindinput="bindKeyInput"/>
-      <icon class="weui-icon-clear" type="clear" size="16" bindtap="tapClearInput"/>
-      </view>
-    </view>
-    <button size="mini" class="index-inlude-button weui-search-bar__cancel-btn black" bindtap="tapGoto" >载入</button>
-  </view>
-</form> -->
 
 <view wx:if="{{logs.length > 0}}">
    <view class="weui-panel weui-panel_access">
@@ -38,11 +24,10 @@
                 <navigator class="weui-media-box__title weui-media-box__title_in-text" url="../list/index?url={{item.url}}">
                      {{item.title}}
                 </navigator>
-                <!-- <view class="weui-media-box__desc">{{item.url}}</view> -->
+ <!--            <view class="weui-media-box__desc">{{item.url}}</view>    -->
                 <view class="weui-media-box__info">
-                     
-                     <view class="weui-media-box__info__meta" style="text-overflow: ellipsis;max-width: 16em;overflow: hidden;">  
-                       {{item.url}}
+                    <view class="weui-media-box__info__meta " >  
+                       {{item.source}}
                     </view>
                     <view class="weui-media-box__info__meta " bindtap="tapDeleteLogItem" data-index="{{index}}">移除</view>
                 </view>
@@ -60,5 +45,4 @@
 <view wx:else>
 </view>
 
-  <template is="foot"/>
 </view>

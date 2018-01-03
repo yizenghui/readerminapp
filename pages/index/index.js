@@ -105,6 +105,15 @@ Page({
       key: 'url_logs',
       success: function (res) {
         var logs = JSON.parse(res.data)||[]
+        if (logs.length>0){
+          for (var i = 0; i < logs.length; i++ ){
+            if (logs[i]["url"].length>16){
+              logs[i]["source"] = logs[i]["url"].substring(0, 16)+"..."
+            }else{
+              logs[i]["source"] = logs[i]["url"]
+            }
+          }
+        }
         that.setData({
           logs: logs.reverse()
         })

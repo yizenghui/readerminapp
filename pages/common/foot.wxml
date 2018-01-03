@@ -1,7 +1,8 @@
 <template name="foot">
 <view class="page__bd page__bd_spacing">
   <view class="weui-footer">
-    <view class="weui-footer__text">转码阅读，版权归源站！</view>
+    <view class="weui-footer__text">免责声明：内容实时转码生成，服务器不作缓存！</view>
+    <!-- <view class="weui-footer__text">转码阅读，版权归源站！</view> -->
     <!-- <view class="weui-footer__text">仅支持原生html页，不支持JS等生成页</view> -->
   </view>
 </view>

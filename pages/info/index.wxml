@@ -1,5 +1,9 @@
 <view wx:if="{{loading}}"> 
-  <view> <i class="weui-loading"></i>数据加载中...</view> 
+  <view class="loadbox">
+  <view><i class="weui-loading"></i>数据加载中...
+  </view>
+   
+   </view> 
 </view>
 <view wx:elif="{{error}}"> 
   <view>出错了</view>
