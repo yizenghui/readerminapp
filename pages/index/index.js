@@ -52,22 +52,22 @@ Page({
     })
   },
 
-  onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      // console.log(res.target)
-    }
-    return {
-      title: '跟读，品尝文学世界各种美味',
-      path: 'pages/index/index',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
-  },
+  // onShareAppMessage: function (res) {
+  //   if (res.from === 'button') {
+  //     // 来自页面内转发按钮
+  //     // console.log(res.target)
+  //   }
+  //   return {
+  //     title: '跟读，品尝文学世界各种美味',
+  //     path: 'pages/index/index',
+  //     success: function (res) {
+  //       // 转发成功
+  //     },
+  //     fail: function (res) {
+  //       // 转发失败
+  //     }
+  //   }
+  // },
 
   tapDeleteLogItem(e) {
     const index = e.currentTarget.dataset.index;
@@ -107,10 +107,18 @@ Page({
         var logs = JSON.parse(res.data)||[]
         if (logs.length>0){
           for (var i = 0; i < logs.length; i++ ){
-            if (logs[i]["url"].length>16){
-              logs[i]["source"] = logs[i]["url"].substring(0, 16)+"..."
-            }else{
-              logs[i]["source"] = logs[i]["url"]
+            var crop_length = 0
+            
+            if (logs[i]["url"].substring(0, 7) == "http://") {
+              crop_length = 7
+            }
+            if (logs[i]["url"].substring(0, 8) == "https://"){
+              crop_length = 8
+            }
+            if (logs[i]["url"].length > 12 + crop_length){
+              logs[i]["source"] = logs[i]["url"].substring(crop_length, 12 + crop_length)+"..."
+            } else {
+              logs[i]["source"] = logs[i]["url"].substring(crop_length, 12 + crop_length) 
             }
           }
         }
@@ -195,6 +203,38 @@ Page({
       })
     }
   },
+
+
+
+  tapContinue: function (e) {
+    const index = e.currentTarget.dataset.index;
+    let logs = this.data.logs;
+    var log = logs[index];
+    if (log && log.url) {
+      wx.getStorage({
+        key: '__read_info_' + log.url,
+        success: function (res) {
+          var info = JSON.parse(res.data) || []
+          if (info.url) {
+            wx.setStorage({
+              key: "__read_menu_url",
+              data: log.url
+            })
+            wx.navigateTo({
+              url: '../info/index?url=' + info.url
+            })
+          }
+        },
+        fail: function (res) {
+            wx.navigateTo({
+              url: '../list/index?url=' + log.url
+            })
+        },
+      })
+    }
+
+  },
+
   // 把链接保存到剪贴板
   rdcopy() {
     var that = this
