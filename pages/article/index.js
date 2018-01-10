@@ -26,8 +26,6 @@ Page({
   },
 
   data: {
-    contentsize:"1.2em",
-    contentbackground:"#c4b399",
     loading: false,
     error: false,
     previous:"", //上一页链接
