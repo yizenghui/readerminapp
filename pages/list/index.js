@@ -264,4 +264,25 @@ Page({
       }
     })
   },
+
+  // 把链接保存到剪贴板
+  setcp() {
+
+    wx.setClipboardData({
+      data: this.data.url,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showModal({
+              title: '提示',
+              content: '原文链接已复制！',
+              showCancel: false
+            })
+            console.log(res.data) // data
+          }
+        })
+      }
+    })
+  },
+
 })

@@ -75,6 +75,16 @@
       <view wx:else> 
 
       </view>
+      
+      
+    <view class="btn-area">
+     <button type="primary" wx:if="{{next.length>0}}" bindtap="tapNext"> 下一页 </button>
+      <button type="default" wx:if="{{previous.length>0}}" bindtap="tapPrevious"> 上一页 </button>
+
+      <button type="default" bindtap="setcp"> 复制链接 </button>
+     
+    </view>
+
       <template is="foot"/>
       </view>
 </view>
