@@ -1,60 +1,19 @@
-<!--index.wxml-->
-<import src="../common/head.wxml"/>
-<import src="../common/foot.wxml"/>
 
 <view class="container">
-    
-<view class="index">
-  <view class="index-hd">
-    <button class="index-logo-button" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-      <image class="index-logo" src="../resources/kind/logo.png" background-size="cover"></image>
-    </button>
-    <view wx:else>
-      <image class="index-logo" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    </view>
-
-    <view class="index-desc">
-    <view>愉快地阅读与分享！ </view>
-    <view>实时载入网站目录及文章，把网站装进小程序！ </view>
-    </view>
-  </view>
-</view>
-<form bindsubmit="formSubmit" bindreset="formReset">
-  <view class="weui-search-bar weui-search-bar_focusing">
-        <view class="weui-search-bar__form" >
-          <view class="weui-search-bar__box weui-cell_input">
-          <input name="url" value="{{url}}" placeholder="http://" autocomplete="off"   bindinput="bindKeyInput"/>
-<icon class="weui-icon-clear" type="clear" size="16" bindtap="tapClearInput"/>
-          </view>
+  
+<view class="weui-cells">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入目录地址" style="height: 3.3em"  value="{{url}}" bindinput="bindKeyInput"/>
         </view>
-        <button size="mini" class="index-inlude-button weui-search-bar__cancel-btn black" bindtap="tapGoto" >载入</button>
-      </view>
-</form>
-
-<view wx:if="{{logs.length > 0}}">
-
-<view class="weui-cells" style="margin-top:0;">
- <view  class="weui-cell weui-cell_access">
-    <view class="weui-cell__bd light">
-          <text>浏览记录</text>
     </view>
-                
-                
-    <view class="weui-cell__ft light" bindtap="tapClearAllCache">
-      <button size="mini" class="index-clear-button">清空</button>
+    <view class="btn-area">
+      <view class="body-view">
+        <button type="primary"  bindtap="primary" bindtap="tapGoto"> 载入 </button>
+        <button bindtap="tapClearInput">清空</button>
+        <button bindtap="rdcopy">粘贴</button>
+      </view>
     </view>
-  </view>
-    <navigator class="weui-cell weui-cell_access" url="../list/index?url={{item.url}}" wx:for="{{logs}}" wx:key="*this">
-      <view class="weui-cell__bd grey">
-          <text>{{item.title}}</text>
-      </view>
-      <view class="weui-cell__ft  weui-cell__ft_in-access">
-      </view>
-    </navigator>
-  </view>
-  </view>
-<view wx:else>
 </view>
 
-  <template is="foot"/>
 </view>

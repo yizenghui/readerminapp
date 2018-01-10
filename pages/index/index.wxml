@@ -1,24 +1,9 @@
 
 <view class="container">
   
-<view class="weui-cells">
-    <view class="weui-cell">
-        <view class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入目录地址" style="height: 3.3em"  value="{{url}}" bindinput="bindKeyInput"/>
-        </view>
-    </view>
-    <view class="btn-area">
-      <view class="body-view">
-        <button type="primary"  bindtap="primary" bindtap="tapGoto"> 载入 </button>
-        <button bindtap="tapClearInput">清空</button>
-        <button bindtap="rdcopy">粘贴</button>
-      </view>
-    </view>
-</view>
-
 <view wx:if="{{logs.length > 0}}">
    <view class="weui-panel weui-panel_access">
-        <view class="weui-panel__hd">浏览记录</view>
+        <!-- <view class="weui-panel__hd">浏览记录</view> -->
         <view class="weui-panel__bd">
            <view class="weui-media-box weui-media-box_text" wx:for="{{logs}}" wx:key="*this">
                 <navigator class="weui-media-box__title weui-media-box__title_in-text" url="../list/index?url={{item.url}}">
@@ -26,23 +11,30 @@
                 </navigator>
  <!--            <view class="weui-media-box__desc">{{item.url}}</view>    -->
                 <view class="weui-media-box__info">
-                    <view class="weui-media-box__info__meta " >  
-                       {{item.source}}
-                    </view>
+
+                
+                    <view class="weui-media-box__info__meta " bindtap="tapContinue" data-index="{{index}}">继续阅读</view>
+                
+                    <view class="weui-media-box__info__meta " ><navigator url="../list/index?url={{item.url}}">查看目录</navigator></view>
                     <view class="weui-media-box__info__meta " bindtap="tapDeleteLogItem" data-index="{{index}}">移除</view>
+                    
+                    <view class="weui-media-box__info__meta " >{{item.source}}</view> 
                 </view>
             </view>
         </view>
-        <view class="weui-panel__ft">
+        <!-- <view class="weui-panel__ft">
             <view class="weui-cell weui-cell_access weui-cell_link">
                 <view class="weui-cell__bd"  bindtap="tapClearAllCache">清空所有</view>
                 <view class="weui-cell__ft "/>
             </view>
-        </view>
+        </view> -->
     </view>
 
    </view>
 <view wx:else>
+<view style='padding:80rpx'>
+此处本应有一个图片的，但是我们没有钱请美工，所以只能告诉您此处应有图！图片的内容是请导入目录！！！
+</view>
 </view>
 
 </view>

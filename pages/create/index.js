@@ -15,6 +15,7 @@ Page({
     logs: []
   },
   onLoad: function () {
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -68,7 +69,30 @@ Page({
     }
   },
 
+  tapDeleteLogItem(e) {
+    const index = e.currentTarget.dataset.index;
+    let logs = this.data.logs;
+    var log = logs[index];
+    if (log && log.url) {
+      wx.removeStorage({
+        key: '__read_info_' + log.url
+       
+      })
+      wx.removeStorage({
+        key: '__cache_list_' + log.url
+      })
+    }
 
+    logs.splice(index, 1);              // 删除购物车列表里这个商品
+    this.setData({
+      logs: logs
+    });
+
+    wx.setStorage({
+      key: "url_logs",
+      data: JSON.stringify(logs)
+    })
+  },
 
 
   onReady: function () {
@@ -81,6 +105,15 @@ Page({
       key: 'url_logs',
       success: function (res) {
         var logs = JSON.parse(res.data)||[]
+        if (logs.length>0){
+          for (var i = 0; i < logs.length; i++ ){
+            if (logs[i]["url"].length>16){
+              logs[i]["source"] = logs[i]["url"].substring(0, 16)+"..."
+            }else{
+              logs[i]["source"] = logs[i]["url"]
+            }
+          }
+        }
         that.setData({
           logs: logs.reverse()
         })
@@ -147,6 +180,8 @@ Page({
     })
   }, 
   tapGoto: function (e) {
+    // 此处已有 openid
+    // console.log(app.globalData.openID)
     var inputUrl = this.data.url
     if (inputUrl == "") {
       wx.showModal({
@@ -160,4 +195,15 @@ Page({
       })
     }
   },
+  // 把链接保存到剪贴板
+  rdcopy() {
+    var that = this
+    wx.getClipboardData({
+      success: function (res) {
+        that.setData({
+          url: res.data
+        })
+      }
+    })
+  }
 })

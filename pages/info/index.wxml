@@ -13,8 +13,10 @@
 <view wx:else>
   <view style="padding: 20px 15px;font-size: 15px;">
     <view style="font-size: 18px;font-weight: 400;margin-bottom: .9em;">{{title}}</view>
-        <rich-text nodes="{{content}}"></rich-text>
-  
+        <!-- <rich-text nodes="{{content}}"></rich-text> -->
+        <view style='text-indent:60rpx'>
+苍茫大地，未来变革，混乱之中，龙蛇并起龙蛇并起，谁是真龙，谁又是蟒蛇？或是天地众生，皆可成龙？朝廷，江湖门派，世外仙道，千年世家，蛮族，魔神，妖族，上古巫道，千百势力，相互纠缠，因缘际会。凡有生灭，皆是众生。或有想，或无想，或非有想，或非无想。皆是众生。虚空也有崩塌，天道也有沉沦，亦是众生。何谓龙？力拔山河，翻江倒海是为龙。自强不息，勇猛jīng进是为龙。道德厚重，教化黎民是为龙。文采风流，流传千古是为龙。热血慷慨，义薄云天是为龙。大气豪爽，视死如归是为龙。慈悲怜悯，救苦救难是为龙。惩恶扬善，镇恶降魔是为龙。谦和恭敬，温润如玉是为龙。秀外慧中，静贞优雅是为龙。铁骨铮铮，威武不屈是为龙。这是个众生与龙的故事。
+</view>
     <view class="btn-area">
      <button type="primary" wx:if="{{next.length>0}}" bindtap="tapNext"> 下一页 </button>
       <button type="default" wx:if="{{previous.length>0}}" bindtap="tapPrevious"> 上一页 </button>
