@@ -33,10 +33,8 @@
    </view>
 <view wx:else>
 <view style='padding:80rpx'>
-
 此处本应有一个图片的，但是我们没有钱请美工，所以只能告诉您此处应有图！图片的内容是请导入目录！！！
 </view>
 </view>
-
 
 </view>

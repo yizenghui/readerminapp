@@ -15,12 +15,7 @@ Page({
     logs: []
   },
   onLoad: function () {
-    // wx.setScreenBrightness({
-    //   value: 0,
-    //   success:function(res){
-    //     console.log(res)
-    //   }
-    // })
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

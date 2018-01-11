@@ -38,6 +38,7 @@ Page({
     content: "",
     contents: [],
     list:[],
+    bottomnext:0,
   },
   onLoad: function (params) {
     var urlStr = params.url
@@ -52,9 +53,9 @@ Page({
       url: urlStr,
       loading: true
     })
-    // wx.showLoading({
-    //   title: '加载中',
-    // })
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: 'https://minapp.readfollow.com/getbookcontent',
       // url: 'https://localhost:1323/show', 
@@ -87,7 +88,7 @@ Page({
             loading: false,
           });
         }
-        // wx.hideLoading()
+        wx.hideLoading()
       }
     })
   },
@@ -155,6 +156,19 @@ Page({
       this.buildLink()
     }
   },
+  // onReachBottom(){
+  //   this.setData({
+  //     bottomnext: this.data.bottomnext+1
+  //   });
+    
+  //   if (!this.data.loading && this.data.next && this.data.bottomnext>2){
+  //     this.fetch(this.data.next)
+  //     this.buildLink()
+  //     this.setData({
+  //       bottomnext: 0
+  //     });
+  //   }
+  // },
   // 把链接保存到剪贴板
   setcp() {
 

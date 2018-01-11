@@ -17,11 +17,19 @@ Page({
     read_log: [],
     this_read: [], // 正在阅读
     subcribe_status:false,
+    reverse_status:false,
   },
 
   // 数组反序
   tapReverseList: function (event) {
-    this.setData({ list: this.data.list.reverse()})
+    this.setData({ list: this.data.list.reverse(), reverse_status: !this.data.reverse_status})
+
+
+    // 这里面不能处理排序问题
+    // wx.setStorage({
+    //   key: "__cache_list_" + this.data.url,
+    //   data: JSON.stringify(this.data.list)
+    // })
   },
 
   // 订阅提交

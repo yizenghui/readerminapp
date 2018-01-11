@@ -1,29 +1,34 @@
-<view wx:if="{{loading}}"> 
-  <view class="loadbox">
-  <view><i class="weui-loading"></i>数据加载中...
+<view  style="height:100%;background:{{contentbackground}}">
+  <view wx:if="{{loading}}"> 
+    <!-- <view class="loadbox">
+    <view><i class="weui-loading"></i>数据加载中...
+    </view>
+    
+    </view>  -->
   </view>
-   
-   </view> 
-</view>
-<view wx:elif="{{error}}"> 
-  <view>出错了</view>
-  <view>没有办法获取目录信息...</view>
-  <view>推荐用户干啥啥啥去...</view>
-  </view>
-<view wx:else  style="font-size:{{contentsize}};background:{{contentbackground}}">
-  <view style="padding: 1em 0.8em;">
-    <view style="font-weight: 400;margin-bottom: .9em;">{{title}}</view>
-        <!-- <rich-text nodes="{{content}}"></rich-text> -->
+  <view wx:elif="{{error}}"> 
+    <view>出错了</view>
+    <view>没有办法获取目录信息...</view>
+    <view>推荐用户干啥啥啥去...</view>
+    </view>
+  <view wx:else  style="font-size:{{contentsize}};background:{{contentbackground}}">
+    <view style="padding: 1em 0.8em;">
+      <view style="font-weight: 400;margin-bottom: .9em;">{{title}}</view>
+          <!-- <rich-text nodes="{{content}}"></rich-text> -->
 
 
 
-        <view style='text-indent:2em;margin-top:1em' wx:for="{{contents}}"  wx:key="*this" >{{item.text}}</view>
-    <view class="btn-area">
-     <button type="primary" wx:if="{{next.length>0}}" bindtap="tapNext"> 下一页 </button>
-      <button type="default" wx:if="{{previous.length>0}}" bindtap="tapPrevious"> 上一页 </button>
+      <view style='text-indent:2em;margin-top:1em' wx:for="{{contents}}"  wx:key="*this" >{{item.text}}</view>
 
-      <button type="default" bindtap="setcp"> 原文链接 </button>
-     
+
+
+      <view class="btn-area">
+      <button  wx:if="{{next.length>0}}" bindtap="tapNext" class="weui-btn" type="primary" plain="true"> 下翻 </button>
+        <button  wx:if="{{previous.length>0}}" bindtap="tapPrevious" class="weui-btn" type="default" plain="true"> 上翻 </button>
+
+        <button bindtap="setcp" class="weui-btn" type="default" plain="true"> 原文链接 </button>
+      
+      </view>
     </view>
   </view>
 </view>
