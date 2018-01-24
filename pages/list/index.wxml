@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<import src="../common/head.wxml"/>
+
 <import src="../common/foot.wxml"/>
 
 <view wx:if="{{loading}}"> 
@@ -22,37 +22,41 @@
       <view class="container">
 
 
-      <view class="index">
-        <view class="index-hd">
-<!--         
-          <view wx:if="{{!userInfo.avatarUrl}}">
-            <image class="index-logo" src="../resources/kind/logo.png"></image>
-          </view>
-          <block wx:else>
-            <image class="index-logo" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-          </block> -->
-          <view class="index-desc">{{title}}</view>
-        </view>
-      </view>
+
 
       <view wx:if="{{list.length > 0}}">
 
+
         <view class="weui-cells">
         
+ <view class="weui-panel_access">
+        <view class="weui-panel__bd">
+           <view class="weui-media-box weui-media-box_text" >
+                <view class="weui-media-box__title weui-media-box__title_in-text">
+                     {{title}}
+                </view>
+                <view class="weui-media-box__info">
+                   
+                    <view class="weui-media-box__info__meta "  bindtap="setcp" >来源: {{source}}</view> 
+                    <!-- <view class="weui-media-box__info__meta " style=" float: right;">分享</view> -->
+                </view>
+            </view>
+        </view>
+    </view>
           <view  class="weui-cell weui-cell_access">
             <view class="weui-cell__bd">
-                <text>目录</text>
-                <form bindsubmit="formSubscribe" report-submit="true" wx:if="{{!subcribe_status}}">
-                <button size="mini" type="primary"  class="list-min-botton" formType="submit">订阅</button>
-              </form>
-              <button size="mini" class="list-min-botton" wx:if="{{subcribe_status}}" bindtap="cancelSubcribe">已订阅</button>
+              <text bindtap="tapReverseList">目录</text> 
+              <!-- <text size="mini" class="list-min-botton" bindtap="tapReverseList" >反序</text> -->
+
+               
             </view>
             <view class="weui-cell__ft">
 
+               <form bindsubmit="formSubscribe" report-submit="true" wx:if="{{!subcribe_status}}">
+                <button size="mini" type="primary"  class="list-min-botton" formType="submit">订阅</button>
+              </form>
+              <button size="mini" class="list-min-botton" wx:if="{{subcribe_status}}" bindtap="cancelSubcribe">已订阅</button>
               
-              
-              <button size="mini" class="list-min-botton" bindtap="tapReverseList" >反序</button>
-
             </view>
           </view>
           
@@ -70,6 +74,9 @@
                 <p>{{item.title}}</p>
             </div>
           </navigator>
+          
+
+      <template is="foot"/>
         </view>
         </view>
       <view wx:else> 
@@ -77,15 +84,6 @@
       </view>
       
       
-    <view class="btn-area">
-     <button type="primary" wx:if="{{next.length>0}}" bindtap="tapNext"> 下一页 </button>
-      <button type="default" wx:if="{{previous.length>0}}" bindtap="tapPrevious"> 上一页 </button>
-
-      <button type="default" bindtap="setcp"> 复制链接 </button>
-     
-    </view>
-
-      <template is="foot"/>
       </view>
 </view>
 

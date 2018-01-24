@@ -88,7 +88,7 @@ Page({
       })
     }
 
-    logs.splice(index, 1);              // 删除购物车列表里这个商品
+    logs.splice(index, 1);              // 删除
     this.setData({
       logs: logs
     });
@@ -99,8 +99,12 @@ Page({
     })
   },
 
-
-  onReady: function () {
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this.get_logs()
+    wx.stopPullDownRefresh()
+  },
+  get_logs:function(){
     var that = this
     // wx.setStorage({
     //   key: "url_logs",
@@ -109,21 +113,21 @@ Page({
     wx.getStorage({
       key: 'url_logs',
       success: function (res) {
-        var logs = JSON.parse(res.data)||[]
-        if (logs.length>0){
-          for (var i = 0; i < logs.length; i++ ){
+        var logs = JSON.parse(res.data) || []
+        if (logs.length > 0) {
+          for (var i = 0; i < logs.length; i++) {
             var crop_length = 0
-            
+
             if (logs[i]["url"].substring(0, 7) == "http://") {
               crop_length = 7
             }
-            if (logs[i]["url"].substring(0, 8) == "https://"){
+            if (logs[i]["url"].substring(0, 8) == "https://") {
               crop_length = 8
             }
-            if (logs[i]["url"].length > 12 + crop_length){
-              logs[i]["source"] = logs[i]["url"].substring(crop_length, 12 + crop_length)+"..."
+            if (logs[i]["url"].length > 18 + crop_length) {
+              logs[i]["source"] = logs[i]["url"].substring(crop_length, 18 + crop_length) + "..."
             } else {
-              logs[i]["source"] = logs[i]["url"].substring(crop_length, 12 + crop_length) 
+              logs[i]["source"] = logs[i]["url"].substring(crop_length, 18 + crop_length)
             }
           }
         }
@@ -132,6 +136,9 @@ Page({
         })
       }
     })
+  },
+  onReady: function () {
+    this.get_logs()
   },
 
   // bindPickerChange: function (e) {

@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "浏览记录"
+  "navigationBarTitleText": "我的阅读",
+  "backgroundTextStyle":"dark",
+  "enablePullDownRefresh":true
 }

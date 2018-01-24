@@ -13,12 +13,14 @@
                 <view class="weui-media-box__info">
 
                 
-                    <view class="weui-media-box__info__meta " bindtap="tapContinue" data-index="{{index}}">继续阅读</view>
-                
-                    <view class="weui-media-box__info__meta " ><navigator url="../list/index?url={{item.url}}">查看目录</navigator></view>
-                    <view class="weui-media-box__info__meta " bindtap="tapDeleteLogItem" data-index="{{index}}">移除</view>
+                    <!-- <view class="weui-media-box__info__meta " bindtap="tapContinue" data-index="{{index}}">继续阅读</view> 
                     
-                    <view class="weui-media-box__info__meta " >{{item.source}}</view> 
+                    <view class="weui-media-box__info__meta " ><navigator url="../list/index?url={{item.url}}">查看目录</navigator></view>
+                    -->
+                
+                    <view class="weui-media-box__info__meta " >来源: {{item.source}}</view> 
+                    
+                    <view class="weui-media-box__info__meta " style=" float: right;" bindtap="tapDeleteLogItem" data-index="{{index}}">移除</view>
                 </view>
             </view>
         </view>
@@ -38,5 +40,8 @@
 </view>
 </view>
 
+<!-- <view class="weui-footer weui-footer_fixed-bottom">
+    <p class="weui-footer__text">技术支持: yize1992 </p>
+</view> -->
 
 </view>

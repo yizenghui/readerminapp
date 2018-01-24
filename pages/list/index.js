@@ -12,6 +12,7 @@ Page({
     error: false,
     title: "",
     url: "",
+    source:"",
     list: [],
     logs: [],
     read_log: [],
@@ -198,10 +199,21 @@ Page({
     this.userSign()
     var that = this;
     var urlStr = params.url
+    var source = ""
     // 显示加载动画
     // that.setData({ url: urlStr, loading: true })
 
-    that.setData({ url: urlStr })
+    var crop_length = 0
+
+
+
+    if (urlStr.length > 24 + crop_length) {
+      source = urlStr.substring(crop_length, 24 + crop_length) + "..."
+    } else {
+      source = urlStr.substring(crop_length, 24 + crop_length)
+    }
+
+    that.setData({ url: urlStr, source: source })
     wx.showLoading({
       title: '加载中',
     })
