@@ -5,17 +5,13 @@ const app = getApp()
 Page({
 
   data: {
-
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    // cateindex:1,
-    // category: [ '小说', '新闻', ],
     url: "",
-    logs: []
+    scene:"",
   },
-  onLoad: function () {
-
+  onLoad: function (options) {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -42,15 +38,10 @@ Page({
         }
       })
     }
+
+
   },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+  
 
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
@@ -59,7 +50,7 @@ Page({
     }
     return {
       title: '跟读，品尝文学世界各种美味',
-      path: 'pages/index/index',
+      path: 'pages/create/index',
       success: function (res) {
         // 转发成功
       },
@@ -69,64 +60,12 @@ Page({
     }
   },
 
-  tapDeleteLogItem(e) {
-    const index = e.currentTarget.dataset.index;
-    let logs = this.data.logs;
-    var log = logs[index];
-    if (log && log.url) {
-      wx.removeStorage({
-        key: '__read_info_' + log.url
-       
-      })
-      wx.removeStorage({
-        key: '__cache_list_' + log.url
-      })
-    }
-
-    logs.splice(index, 1);              // 删除购物车列表里这个商品
-    this.setData({
-      logs: logs
-    });
-
-    wx.setStorage({
-      key: "url_logs",
-      data: JSON.stringify(logs)
-    })
-  },
-
 
   onReady: function () {
     var that = this
-    // wx.setStorage({
-    //   key: "url_logs",
-    //   data: JSON.stringify(that.data.logs)
-    // })
-    wx.getStorage({
-      key: 'url_logs',
-      success: function (res) {
-        var logs = JSON.parse(res.data)||[]
-        if (logs.length>0){
-          for (var i = 0; i < logs.length; i++ ){
-            if (logs[i]["url"].length>16){
-              logs[i]["source"] = logs[i]["url"].substring(0, 16)+"..."
-            }else{
-              logs[i]["source"] = logs[i]["url"]
-            }
-          }
-        }
-        that.setData({
-          logs: logs.reverse()
-        })
-      }
-    })
+    that.checkRdAndGoto()
   },
 
-  // bindPickerChange: function (e) {
-  //   console.log('picker发送选择改变，携带值为', e.detail.value)
-  //   this.setData({
-  //     cateindex: e.detail.value
-  //   })
-  // },
 
   bindKeyInput: function (e) {
     this.setData({
@@ -152,28 +91,6 @@ Page({
     console.log('form发生了submit事件，携带数据为：', e)
   },
 
-  // 清空所有数据
-  tapClearAllCache: function (e) {
-    var that = this
-
-    wx.showModal({
-      title: '提示',
-      content: '清空所有缓存记录，确定吗？',
-      success: function (res) {
-        if (res.confirm) {
-          // 清除页面数据
-          that.setData({
-            logs: []
-          })
-          // 清空本地缓存
-          wx.clearStorage()
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-
-  },
   tapClearInput: function (e) {
     this.setData({
       url: ""
@@ -195,7 +112,7 @@ Page({
       })
     }
   },
-  // 把链接保存到剪贴板
+  // 把粘贴版的内容转入输入目录地址
   rdcopy() {
     var that = this
     wx.getClipboardData({
@@ -205,5 +122,28 @@ Page({
         })
       }
     })
-  }
+  }, // 把粘贴版的内容转入输入目录地址
+
+  checkRdAndGoto() {
+    var that = this
+    wx.getClipboardData({
+      success: function (res) {
+        if(res.data){
+          wx.showModal({
+            title: '提示',
+            content: '是否要读取粘贴版目录',
+            success: function (res2) {
+              if (res2.confirm===true){
+                wx.navigateTo({
+                  url: '../list/index?url=' + res.data
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+
+
 })

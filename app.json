@@ -3,8 +3,7 @@
     "pages/index/index",
     "pages/list/index",
     "pages/info/index",
-    "pages/create/index",
-    "pages/logs/logs"
+    "pages/create/index"
   ],
 "tabBarbb": {
   "color": "#7A7E83",

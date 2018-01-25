@@ -14,7 +14,7 @@ Page({
     url: "",
     logs: []
   },
-  onLoad: function () {
+  onLoad: function (options) {
     // wx.setScreenBrightness({
     //   value: 0,
     //   success:function(res){
@@ -47,7 +47,44 @@ Page({
         }
       })
     }
+
+
+    var scene = decodeURIComponent(options.scene)
+
+    if (scene != "" && scene != undefined) {
+      this.checkPsAndGoto(scene)
+    }
   },
+
+
+  checkPsAndGoto(scene) {
+    var that = this
+
+    wx.request({
+      url: 'https://minapp.readfollow.com/geturl',
+      // url: 'https://localhost:1323/list', 
+      data: {
+        openid: app.globalData.openID,
+        id: scene,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      fail: function () {
+
+      },
+      success: function (res) {
+        if (res.data.ID && res.data.URL) {
+          wx.navigateTo({
+            url: '../list/index?url=' + res.data.URL
+          })
+          // console.log(res.data.ID, res.data.URL)
+        }
+      }
+    })
+  },
+
+
   getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
