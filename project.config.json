@@ -33,6 +33,12 @@
 					"pathName": "pages/index/index",
 					"query": "scene=32",
 					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "错误信息提醒开发",
+					"pathName": "pages/dev/msg_warn",
+					"query": ""
 				}
 			]
 		}

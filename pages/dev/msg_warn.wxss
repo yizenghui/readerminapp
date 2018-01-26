@@ -1,0 +1,5 @@
+/* pages/dev/msg_warn.wxss */
+.weui-msg__text-area {
+    margin-bottom: 25px;
+    padding: 0 20px;
+}

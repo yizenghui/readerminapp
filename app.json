@@ -3,6 +3,8 @@
     "pages/index/index",
     "pages/list/index",
     "pages/info/index",
+    "pages/dev/msg_warn",
+    "pages/feedback/index",
     "pages/create/index"
   ],
 "tabBarbb": {
