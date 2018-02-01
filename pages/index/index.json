@@ -1,5 +1,5 @@
 {
   "navigationBarTitleText": "我的阅读",
   "backgroundTextStyle":"dark",
-  "enablePullDownRefresh":false
+  "enablePullDownRefresh":true
 }

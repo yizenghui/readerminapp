@@ -16,4 +16,18 @@
     </view>
 </view>
 
+<view style='padding:60rpx'>
+<view style='text-indent:2em;margin-top:1em' >
+把链接地址粘贴并载入即可订阅或浏览。
+</view>
+<view style='text-indent:2em;margin-top:1em' >
+遇到需要用户登录或脚本生成的页面内容是无法读取的。
+</view>
+<view style='text-indent:2em;margin-top:1em' >
+
+<navigator url="../feedback/index?url={{this_read.url}}">问题或建议
+</navigator>
+</view>
+
+</view>
 </view>

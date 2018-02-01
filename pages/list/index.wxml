@@ -80,31 +80,7 @@
         </view>
         </view>
       <view wx:else> 
-          <div class="weui-msg">
-            <div class="weui-msg__icon-area"><i class="weui-icon-warn weui-icon_msg"></i></div>
-            <div class="weui-msg__text-area">
-                <view class="weui-msg__title">目录加载失败</view>
-                <view class="weui-msg__desc">
-                    检查目录地址合法性
-                </view>
-                <view class="weui-msg__desc">
-                    请检查源网站是否正常访问
-                </view>
-                <view class="weui-msg__desc">
-                    暂不支持读取JS等脚本技术渲染目录
-                </view>
-                <view class="weui-msg__desc">
-                  <navigator url="../feedback/index?url={{this_read.url}}">
-                    上述办法无效，向开发者请反馈问题
-                  </navigator>
-                </view>
-            </div>
-
-          <view class="btn-area">
-            <button class="weui-btn" type="primary" plain="true"> 重新输入 </button>
-            <button class="weui-btn" type="default" plain="true"> 重新加载 </button>
-          </view>
-        </div>
+          
       </view>
       
       

@@ -39,6 +39,13 @@
 					"name": "错误信息提醒开发",
 					"pathName": "pages/dev/msg_warn",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "反馈问题",
+					"pathName": "pages/feedback/index",
+					"query": "",
+					"scene": "1011"
 				}
 			]
 		}

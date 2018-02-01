@@ -1,2 +1,22 @@
-<!--pages/feedback/index.wxml-->
-<text>pages/feedback/index.wxml</text>
+
+<view class="container">
+  
+<form bindsubmit="formPost" report-submit="true" >
+
+<view class="weui-cells">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请详述您的问题或建议，谢谢！" style="height: 8em"  value="{{answer}}" bindinput="bindKeyInput"/>
+        </view>
+    </view>
+</view>
+
+    <view class="btn-area">
+      <view class="body-view">
+        <button type="primary"  bindtap="primary" formType="submit"> 马上反馈 </button>
+      </view>
+    </view>
+</form>
+
+
+</view>
