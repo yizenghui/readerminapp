@@ -38,8 +38,6 @@ Page({
         }
       })
     }
-
-
   },
   
 
@@ -63,7 +61,7 @@ Page({
 
   onReady: function () {
     var that = this
-    that.checkRdAndGoto()
+    // that.checkRdAndGoto()
   },
 
 
@@ -123,6 +121,25 @@ Page({
       }
     })
   }, // 把粘贴版的内容转入输入目录地址
+
+
+  // 扫码(扫在网页上游览的二维码)
+  scanCode() {
+    wx.scanCode({
+      success: (res) => {
+        if (res.scanType =="QR_CODE"){
+          var isUrl = /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\’:+!]*([^<>\"\"])*$/.test(res.result)
+          wx.navigateTo({
+            url: '../list/index?url=' + res.result
+          })
+        }
+      }
+    })
+  }, 
+
+  checkIsURL(url){
+  },
+
 
   checkRdAndGoto() {
     var that = this

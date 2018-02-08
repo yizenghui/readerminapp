@@ -29,26 +29,23 @@
 
         <view class="weui-cells">
         
- <view class="weui-panel_access">
-        <view class="weui-panel__bd">
-           <view class="weui-media-box weui-media-box_text" >
-                <view class="weui-media-box__title weui-media-box__title_in-text">
-                     {{title}}
-                </view>
-                <view class="weui-media-box__info">
-                   
-                    <view class="weui-media-box__info__meta "  bindtap="setcp" >来源: {{source}}</view> 
-                    <!-- <view class="weui-media-box__info__meta " style=" float: right;">分享</view> -->
+          <view class="weui-panel_access">
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text" >
+                    <view class="weui-media-box__title weui-media-box__title_in-text">
+                          {{title}}
+                    </view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta "  bindtap="setcp" >来源: {{source}}</view> 
+                        <view class="weui-media-box__info__meta " style=" float: right;"  bindtap="shareQrcode">分享</view> 
+                    </view>
                 </view>
             </view>
-        </view>
-    </view>
+          </view>
+          
           <view  class="weui-cell weui-cell_access">
             <view class="weui-cell__bd">
-              <text bindtap="tapReverseList">目录</text> 
-              <!-- <text size="mini" class="list-min-botton" bindtap="tapReverseList" >反序</text> -->
-
-               
+            <button style="margin-left:0px" size="mini" class="list-min-botton" bindtap="tapReverseList"> {{!reverse_status?'顺序目录':'倒序目录'}}</button>
             </view>
             <view class="weui-cell__ft">
 

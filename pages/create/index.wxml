@@ -11,6 +11,7 @@
       <view class="body-view">
         <button type="primary"  bindtap="primary" bindtap="tapGoto"> 载入 </button>
         <button bindtap="tapClearInput">清空</button>
+        <button bindtap="scanCode">二维码</button>
         <button bindtap="rdcopy">粘贴</button>
       </view>
     </view>

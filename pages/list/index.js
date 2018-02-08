@@ -19,6 +19,7 @@ Page({
     this_read: [], // 正在阅读
     subcribe_status:false,
     reverse_status:false,
+    qrcode_src:"https://minapp.readfollow.com/qrcode?scene=91",
   },
 
   // 数组反序
@@ -303,6 +304,44 @@ Page({
         })
       }
     })
+  },
+
+  shareQrcode() {
+
+    var that = this
+    var urlStr = that.data.url
+    wx.request({
+      url: 'https://minapp.readfollow.com/getid',
+      data: {
+        openid: app.globalData.openID,
+        url: urlStr,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      fail: function () {
+
+      },
+      success: function (res) {
+        console.log(res.data)
+        var scene = parseInt(res.data)
+        if (scene>0){
+          wx.previewImage({
+            current: '', // 当前显示图片的http链接
+            urls: ['https://minapp.readfollow.com/qrcode?scene=' + scene] // 需要预览的图片http链接列表
+          })
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: '获取二维码失败',
+            showCancel: false
+          })
+        }
+      }
+    })
+
+
+
   },
 
 })
