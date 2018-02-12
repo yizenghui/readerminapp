@@ -1,0 +1,34 @@
+
+<view class="container">
+  
+<view class="weui-cells">
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入目录地址" style="height: 3.3em"  value="{{url}}" bindinput="bindKeyInput"/>
+        </view>
+    </view>
+    <view class="btn-area">
+      <view class="body-view">
+        <button type="primary"  bindtap="primary" bindtap="tapGoto"> 载入 </button>
+        <button bindtap="tapClearInput">清空</button>
+        <button bindtap="scanCode">二维码</button>
+        <button bindtap="rdcopy">粘贴</button>
+      </view>
+    </view>
+</view>
+
+<view style='padding:60rpx'>
+<view style='text-indent:2em;margin-top:1em' >
+把链接地址粘贴并载入即可订阅或浏览。
+</view>
+<view style='text-indent:2em;margin-top:1em' >
+遇到需要用户登录或脚本生成的页面内容是无法读取的。
+</view>
+<view style='text-indent:2em;margin-top:1em' >
+
+<navigator url="../feedback/index?url={{this_read.url}}">问题或建议
+</navigator>
+</view>
+
+</view>
+</view>

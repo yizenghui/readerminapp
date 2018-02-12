@@ -196,17 +196,19 @@ Page({
     })
   },
 
-  onLoad: function (params) {
-    this.userSign()
+
+
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this.pullData(this.data.url)
+    this.checkSubcribe()
+    wx.stopPullDownRefresh()
+  },
+
+  pullData(urlStr){
     var that = this;
-    var urlStr = params.url
     var source = ""
-    // 显示加载动画
-    // that.setData({ url: urlStr, loading: true })
-
     var crop_length = 0
-
-
 
     if (urlStr.length > 24 + crop_length) {
       source = urlStr.substring(crop_length, 24 + crop_length) + "..."
@@ -215,6 +217,8 @@ Page({
     }
 
     that.setData({ url: urlStr, source: source })
+
+    // 显示加载动画
     wx.showLoading({
       title: '加载中',
     })
@@ -229,12 +233,11 @@ Page({
         })
       }
     })
-    this.checkSubcribe()
     wx.request({
       url: 'https://minapp.readfollow.com/getlist',
       // url: 'https://localhost:1323/list', 
-      data: { 
-        url: urlStr ,
+      data: {
+        url: urlStr,
         openid: app.globalData.openID,
       },
       header: {
@@ -266,8 +269,8 @@ Page({
 
         // 写入到浏览记录缓存
         var rep = false; // 是否已存在
-        if ( logs.length ) {
-        // 检查有没缓存重复数据
+        if (logs.length) {
+          // 检查有没缓存重复数据
           for (var i = 0; i < logs.length; i++) {
             if (logs[i].url == urlStr) rep = true
           }
@@ -284,6 +287,13 @@ Page({
         wx.hideLoading()
       }
     })
+  },
+
+  onLoad: function (params) {
+    this.userSign()
+    this.pullData(params.url)
+    this.checkSubcribe()
+
   },
 
   // 把链接保存到剪贴板

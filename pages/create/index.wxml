@@ -1,34 +1,47 @@
 
-<view class="container">
-  
-<view class="weui-cells">
-    <view class="weui-cell">
-        <view class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入目录地址" style="height: 3.3em"  value="{{url}}" bindinput="bindKeyInput"/>
+
+    <view class="page">
+        <view class="page__hd">
+            <view class="page__title" ><text bindtap="guide"></text></view>
+
+            <view hidden="{{!showGuide}}">
+            <view class="page__desc">在浏览器复制链接地址</view>
+            <view class="page__desc">粘贴到链接地址输入框</view>
+            <view class="page__desc">或使用<icon  class='iconfont icon-scanning' size="14"/>扫链接二维码</view>
+            
+
+
+            </view>
         </view>
-    </view>
-    <view class="btn-area">
-      <view class="body-view">
-        <button type="primary"  bindtap="primary" bindtap="tapGoto"> 载入 </button>
-        <button bindtap="tapClearInput">清空</button>
-        <button bindtap="scanCode">二维码</button>
-        <button bindtap="rdcopy">粘贴</button>
-      </view>
-    </view>
+        <view class="page__bd">
+            <view class="weui-search-bar">
+                <view class="weui-search-bar__form">
+                    <view class="weui-search-bar__box">
+                        <input type="text" class="weui-search-bar__input" placeholder="https://readfollow.com/" value="{{url}}" focus="{{inputShowed}}" bindinput="bindKeyInput"/>
+                        <view class="weui-icon-clear"  wx:if="{{url.length > 0}}" bindtap="clearInput">
+                            <icon type="clear" size="14"/>
+                        </view>
+                    </view>
+                    <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                        <view class="weui-search-bar__text">请输入链接地址</view>
+                    </label>
+                </view>
+                <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="tapGoto">载入</view>
+                <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+                <view class="weui-search-bar__cancel-btn" hidden="{{inputShowed}}" bindtap="scanCode"><icon class='iconfont icon-scanning'  size="14"/></view>
+            </view>
+            
+        </view>
+
+  <view wx:if="{{list.length > 0}}">
+        <view class="weui-cells__title"><icon class='iconfont icon-link' size="14" /> 示例 </view>
+        <view class="weui-cells weui-cells_after-title">
+            <navigator url="../list/index?url={{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{list}}" wx:key="*this">
+                <view class="weui-cell__bd">{{item.title}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+          
+        </view>
+   </view>
 </view>
 
-<view style='padding:60rpx'>
-<view style='text-indent:2em;margin-top:1em' >
-把链接地址粘贴并载入即可订阅或浏览。
-</view>
-<view style='text-indent:2em;margin-top:1em' >
-遇到需要用户登录或脚本生成的页面内容是无法读取的。
-</view>
-<view style='text-indent:2em;margin-top:1em' >
-
-<navigator url="../feedback/index?url={{this_read.url}}">问题或建议
-</navigator>
-</view>
-
-</view>
-</view>
