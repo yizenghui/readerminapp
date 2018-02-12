@@ -37,7 +37,9 @@
                     </view>
                     <view class="weui-media-box__info">
                         <view class="weui-media-box__info__meta "  bindtap="setcp" >来源: {{source}}</view> 
-                        <view class="weui-media-box__info__meta " style=" float: right;"  bindtap="shareQrcode">分享</view> 
+                        <view class="weui-media-box__info__meta " style=" float: right;"  bindtap="shareQrcode">
+                        <icon class='iconfont icon-erweima' size="14" />
+                        </view> 
                     </view>
                 </view>
             </view>
