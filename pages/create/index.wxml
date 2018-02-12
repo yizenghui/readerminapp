@@ -2,7 +2,7 @@
 
     <view class="page">
         <view class="page__hd">
-            <view class="page__title" ><text bindtap="guide"></text></view>
+            <view class="page__title" ><text bindtap="guide">导入目录</text></view>
 
             <view hidden="{{!showGuide}}">
             <view class="page__desc">在浏览器复制链接地址</view>
@@ -34,7 +34,7 @@
         </view>
 
   <view wx:if="{{list.length > 0}}">
-        <view class="weui-cells__title"><icon class='iconfont icon-link' size="14" /> 示例 </view>
+        <view class="weui-cells__title"><icon class='iconfont icon-link' size="14" /> 阅读示例 </view>
         <view class="weui-cells weui-cells_after-title">
             <navigator url="../list/index?url={{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{list}}" wx:key="*this">
                 <view class="weui-cell__bd">{{item.title}}</view>

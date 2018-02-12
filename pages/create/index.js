@@ -14,10 +14,7 @@ Page({
     inputVal: '',
     showGuide: false,
     list:[
-      {
-        title:"点道为止",
-        url:"https://www.ddwz.org/chapter/"
-      },
+
       {
         title: "斗罗大陆",
         url: "http://www.88dushu.com/xiaoshuo/0/511/"
@@ -25,6 +22,18 @@ Page({
       {
         title: "圣墟",
         url: "http://www.biqiuge.com/book/4772/"
+      },
+      {
+        title: "斗破苍穹",
+        url: "https://www.37zw.net/1/1257/"
+      },
+      {
+        title: "凤囚凰",
+        url: "https://www.ybdu.com/xiaoshuo/8/8584/"
+      },
+      {
+        title: "点道为止",
+        url: "http://book.zongheng.com/showchapter/730066.html"
       }
       
     ],
