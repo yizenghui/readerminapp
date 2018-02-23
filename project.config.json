@@ -52,6 +52,13 @@
 					"name": "导入",
 					"pathName": "pages/create/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "播放音频",
+					"pathName": "pages/play/index",
+					"query": "",
+					"scene": "1011"
 				}
 			]
 		}

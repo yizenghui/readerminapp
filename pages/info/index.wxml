@@ -16,6 +16,7 @@
       <view style="font-weight: 400;margin-bottom: .9em;">{{title}}</view>
           <!-- <rich-text nodes="{{content}}"></rich-text> -->
 
+        <button bindtap="play" class="weui-btn" type="default" plain="true"> Ai阅读 </button>
 
 
       <view class="p" wx:for="{{contents}}"  wx:key="*this" >{{item.text}}</view>

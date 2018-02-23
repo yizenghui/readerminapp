@@ -3,11 +3,10 @@ const app = getApp()
 
 Page({
 
-  // onReady:function(){
-  //   console.log("onReady")
-    
-    
-  // },
+  onReady:function(){
+    // console.log("onReady")
+    this.backgroundAudioManager = wx.getBackgroundAudioManager()
+  },
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
       // 来自页面内转发按钮
@@ -38,12 +37,52 @@ Page({
     content: "",
     contents: [],
     list:[],
-    bottomnext:0,
+    bottomnext: 0,
+    playIndex: 0
   },
   onLoad: function (params) {
     var urlStr = params.url
     this.fetch(urlStr)
     this.buildLink()
+  },
+
+
+  play() {
+
+    this.backgroundAudioManager.title = '此时此刻'
+    this.backgroundAudioManager.epname = '此时此刻'
+    this.backgroundAudioManager.singer = '跟读小程序'
+    this.backgroundAudioManager.coverImgUrl = 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000'
+
+    var playIndex = this.data.playIndex
+    var contents = this.data.contents
+    var txt = contents[playIndex].text
+    console.log(txt)
+    var that = this
+    that.backgroundAudioManager.src = that.buildUrl(txt)
+    that.backgroundAudioManager.onEnded(
+      () => {
+        playIndex++
+        if (playIndex < contents.length) {
+          that.backgroundAudioManager.title = '此时此刻' + playIndex
+          that.backgroundAudioManager.epname = '此时此刻' + playIndex
+          var txt = contents[playIndex].text
+          // that.backgroundAudioManager.src = 'https://tsn.baidu.com/text2audio?lan=zh&ctp=1&cuid=abcdxxx&tok=24.f28935c504bb05da2099b371406a878c.2592000.1521978785.282335-10531269&tex=' + encodeURI(txt) + '&vol=9&per=0&spd=5&pit=5'
+          console.log(txt)
+
+          that.backgroundAudioManager.src = that.buildUrl(txt)
+        }
+      })
+
+    that.backgroundAudioManager.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
+  },
+
+  // 获取音频地址
+  buildUrl(txt) {
+    return 'https://tsn.baidu.com/text2audio?lan=zh&ctp=1&cuid=abcdxxx&tok=24.f28935c504bb05da2099b371406a878c.2592000.1521978785.282335-10531269&tex=' + encodeURI(txt) + '&vol=9&per=0&spd=5&pit=5'
   },
 
 // 获取数据
@@ -80,7 +119,9 @@ Page({
           that.setData({
             title: data.title,
             contents: data.content,
-            loading: false
+            loading: false,
+            playIndex:0
+
           })
         } else {
           that.setData({
