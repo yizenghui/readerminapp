@@ -48,13 +48,15 @@ Page({
       })
     }
 
-    if (options.scene !== undefined) {
-      var scene = decodeURIComponent(options.scene)
+
+    var scene = decodeURIComponent(options.scene)
+
+    if (scene != "" && scene != undefined) {
       this.checkPsAndGoto(scene)
     }
   },
 
-// 检查跳转参数并进行跳转
+
   checkPsAndGoto(scene) {
     var that = this
 
@@ -84,7 +86,7 @@ Page({
 
 
   getUserInfo: function (e) {
-    // console.log(e)
+    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

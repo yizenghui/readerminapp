@@ -1,4 +1,16 @@
 <view  style="height:100%;background:{{contentbackground}}">
+<view wx:if="{{showMenu}}" style="padding:1rem;position: fixed;top: 0;right: 0;left: 0;z-index: 1030;background:{{topbackground}}">
+    <!-- <text bindtap="play"> Ai阅读 </text> -->
+    <text bindtap="setcp"> 原文链接 </text>
+    <text bindtap="enlargefontsize">字体+</text> {{contentfontsize}} <text bindtap="narrowfontsize">字体-</text>
+</view>
+
+<view wx:if="{{showMenu}}" style="padding:1rem;position: fixed;bottom: 0;right: 0;left: 0;z-index: 1030;background:{{topbackground}}">
+    <text wx:if="{{previous.length>0}}" bindtap="tapPrevious" > 上一章 </text>
+    <text wx:if="{{next.length>0}}" bindtap="tapNext" > 下一章 </text>
+</view>
+
+
   <view wx:if="{{loading}}"> 
     <!-- <view class="loadbox">
     <view><i class="weui-loading"></i>数据加载中...
@@ -10,24 +22,24 @@
     <view>出错了</view>
     <view>没有办法获取目录信息...</view>
     <view>推荐用户干啥啥啥去...</view>
+      <button bindtap="refresh" class="weui-btn" type="default" plain="true"> 重新加载 </button>
     </view>
   <view wx:else  style="font-size:{{contentsize}};background:{{contentbackground}}">
     <view style="padding: 1em 0.8em;">
       <view style="font-weight: 400;margin-bottom: .9em;">{{title}}</view>
           <!-- <rich-text nodes="{{content}}"></rich-text> -->
 
-        <button bindtap="play" class="weui-btn" type="default" plain="true"> Ai阅读 </button>
+        <!-- <button bindtap="play" class="weui-btn" type="default" plain="true"> Ai阅读 </button> -->
 
-
-      <view class="p" wx:for="{{contents}}"  wx:key="*this" >{{item.text}}</view>
-
+        <view style="font-size:{{contentfontsize}}px"  bindtap="togglerSet">
+              <view class="p" wx:for="{{contents}}"  wx:key="*this" >{{item.text}}</view>
+        </view>
 
 
       <view class="btn-area">
-      <button  wx:if="{{next.length>0}}" bindtap="tapNext" class="weui-btn" type="primary" plain="true"> 下翻 </button>
-        <button  wx:if="{{previous.length>0}}" bindtap="tapPrevious" class="weui-btn" type="default" plain="true"> 上翻 </button>
+      <button  wx:if="{{next.length>0}}" bindtap="tapNext" class="weui-btn" type="primary" plain="true"> 下一章 </button>
+        <!-- <button  wx:if="{{previous.length>0}}" bindtap="tapPrevious" class="weui-btn" type="default" plain="true"> 上翻 </button> -->
 
-        <button bindtap="setcp" class="weui-btn" type="default" plain="true"> 原文链接 </button>
       
       </view>
     </view>

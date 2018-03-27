@@ -59,6 +59,12 @@
 					"pathName": "pages/play/index",
 					"query": "",
 					"scene": "1011"
+				},
+				{
+					"id": 5,
+					"name": "阅读详细",
+					"pathName": "pages/info/index",
+					"query": "url=http://www.biqiuge.com/book/4772/21614546.html"
 				}
 			]
 		}

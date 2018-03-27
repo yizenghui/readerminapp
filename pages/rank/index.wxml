@@ -1,0 +1,53 @@
+
+<view class="container">
+  
+<view wx:if="{{logs.length > 0}}">
+   <view class="weui-panel weui-panel_access">
+        <!-- <view class="weui-panel__hd">浏览记录</view> -->
+        <view class="weui-panel__bd">
+           <view class="weui-media-box weui-media-box_text" wx:for="{{logs}}" wx:key="*this">
+                <navigator class="weui-media-box__title weui-media-box__title_in-text" url="../list/index?url={{item.url}}">
+                     {{item.title}}
+                </navigator>
+ <!--            <view class="weui-media-box__desc">{{item.url}}</view>    -->
+                <view class="weui-media-box__info">
+
+                
+                    <!-- <view class="weui-media-box__info__meta " bindtap="tapContinue" data-index="{{index}}">继续阅读</view> 
+                    
+                    <view class="weui-media-box__info__meta " ><navigator url="../list/index?url={{item.url}}">查看目录</navigator></view>
+                    -->
+                
+                    <view class="weui-media-box__info__meta " >来源: {{item.source}}</view> 
+                    
+                    <view class="weui-media-box__info__meta " style=" float: right;" bindtap="tapDeleteLogItem" data-index="{{index}}">移除</view>
+                </view>
+            </view>
+        </view>
+        <!-- <view class="weui-panel__ft">
+            <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd"  bindtap="tapClearAllCache">清空所有</view>
+                <view class="weui-cell__ft "/>
+            </view>
+        </view> -->
+    </view>
+
+   </view>
+<view wx:else>
+<view style='padding:80rpx'>
+<view style='text-indent:2em;margin-top:1em' >
+跟读提供目录订阅和HTML实时转码浏览，
+“订阅更新”和“干净阅读”是它想要满足于用户的。
+</view>
+
+<view style='text-indent:2em;margin-top:1em' >
+————为此努力吧！
+</view>
+</view>
+</view>
+
+<!-- <view class="weui-footer weui-footer_fixed-bottom">
+    <p class="weui-footer__text">技术支持: yize1992 </p>
+</view> -->
+
+</view>

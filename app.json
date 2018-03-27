@@ -8,29 +8,10 @@
     "pages/play/index",
     "pages/create/index"
   ],
-"tabBarbb": {
-  "color": "#7A7E83",
-  "selectedColor": "#3cc51f",
-  "borderStyle": "black",
-  "backgroundColor": "#ffffff",
-  "list": [
-    {
-      "pagePath": "pages/index/index",
-      "iconPath": "image/icon_component.png",
-      "selectedIconPath": "image/icon_component_HL.png",
-      "text": "组件"
-    },
-    {
-      "pagePath": "pages/list/index",
-      "iconPath": "image/icon_API.png",
-      "selectedIconPath": "image/icon_API_HL.png",
-      "text": "接口"
-    }
-  ]
-},
+
 "tabBar": {
   "color": "#7A7E83",
-  "selectedColor": "#3cc51f",
+  "selectedColor": "#1296db",
   "borderStyle": "black",
   "backgroundColor": "#ffffff",
   "list": [
@@ -40,6 +21,12 @@
       "iconPath": "image/list.png",
       "selectedIconPath": "image/list_HL.png",
       "text": "我的阅读"
+    },
+    {
+      "pagePath": "pages/rank/index",
+      "iconPath": "image/ranking.png",
+      "selectedIconPath": "image/ranking_HL.png",
+      "text": "分享排行"
     },
     {
       "pagePath": "pages/create/index",
