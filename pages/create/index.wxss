@@ -19,3 +19,12 @@ font-size:14px;
 
 
 
+button[type="primary"] {
+color:#FFFFFF;
+background-color:#1296db;
+
+}
+
+.weui-search-bar__cancel-btn{
+  color:#888888
+}

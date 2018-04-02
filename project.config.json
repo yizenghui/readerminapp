@@ -25,7 +25,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -65,6 +65,12 @@
 					"name": "阅读详细",
 					"pathName": "pages/info/index",
 					"query": "url=http://www.biqiuge.com/book/4772/21614546.html"
+				},
+				{
+					"id": -1,
+					"name": "分享排行",
+					"pathName": "pages/rank/index",
+					"query": ""
 				}
 			]
 		}

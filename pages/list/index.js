@@ -74,11 +74,33 @@ Page({
       // 来自页面内转发按钮
       // console.log(res.target)
     }
+    var title = "使用跟读小程序体验干净阅读"
+    var url = this.data.url
     return {
-      title: this.data.title,
-      path: 'pages/list/index?url=' + this.data.url,
+      title: title,
+      path: 'pages/list/index?url=' + url,
       success: function (res) {
         // 转发成功
+        wx.request({
+          url: 'https://minapp.readfollow.com/sharelog',
+          // url: 'https://localhost:1323/list', 
+          data: {
+            openid: app.globalData.openID,
+            url: url
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          fail: function () {
+
+          },
+          success: function (res) {
+            that.setData({
+              subcribe_status: res.data.Status
+            })
+            console.log(res)
+          }
+        })
       },
       fail: function (res) {
         // 转发失败 

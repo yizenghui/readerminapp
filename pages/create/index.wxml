@@ -26,13 +26,14 @@
                         <view class="weui-search-bar__text">请输入链接地址</view>
                     </label>
                 </view>
-                <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="tapGoto">载入</view>
+                <!-- <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="tapGoto">载入</view> -->
                 <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
                 <view class="weui-search-bar__cancel-btn" hidden="{{inputShowed}}" bindtap="scanCode"><icon class='iconfont icon-scanning'  size="14"/></view>
             </view>
             
         </view>
 
+      <button bindtap="tapGoto" class="weui-btn" type="primary"> 载入目录 </button>
   <view wx:if="{{list.length > 0}}">
         <view class="weui-cells__title"><icon class='iconfont icon-link' size="14" /> 阅读示例 </view>
         <view class="weui-cells weui-cells_after-title">

@@ -6,7 +6,8 @@
     "pages/dev/msg_warn",
     "pages/feedback/index",
     "pages/play/index",
-    "pages/create/index"
+    "pages/create/index",
+    "pages/rank/index"
   ],
 
 "tabBar": {

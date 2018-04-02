@@ -15,26 +15,26 @@ Page({
     showGuide: false,
     list:[
 
-      {
-        title: "斗罗大陆",
-        url: "http://www.88dushu.com/xiaoshuo/0/511/"
-      },
-      {
-        title: "圣墟",
-        url: "http://www.biqiuge.com/book/4772/"
-      },
-      {
-        title: "斗破苍穹",
-        url: "https://www.37zw.net/1/1257/"
-      },
-      {
-        title: "凤囚凰",
-        url: "https://www.ybdu.com/xiaoshuo/8/8584/"
-      },
-      {
-        title: "点道为止",
-        url: "http://book.zongheng.com/showchapter/730066.html"
-      }
+      // {
+      //   title: "斗罗大陆",
+      //   url: "http://www.88dushu.com/xiaoshuo/0/511/"
+      // },
+      // {
+      //   title: "圣墟",
+      //   url: "http://www.biqiuge.com/book/4772/"
+      // },
+      // {
+      //   title: "斗破苍穹",
+      //   url: "https://www.37zw.net/1/1257/"
+      // },
+      // {
+      //   title: "凤囚凰",
+      //   url: "https://www.ybdu.com/xiaoshuo/8/8584/"
+      // },
+      // {
+      //   title: "点道为止",
+      //   url: "http://book.zongheng.com/showchapter/730066.html"
+      // }
       
     ],
   },
